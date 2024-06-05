@@ -470,9 +470,17 @@ public class AutoCraftingTable extends SlimefunItem implements EnergyNetComponen
     }
 
     public static ItemStack createKeyItem(Material material) {
-        return new CustomItemStack(material, "", "&eSneak and Right Click the",
-                "&eAuto Crafting Table with an item", "&eto change the target recipe"
-        );
+        if (material == Material.HOPPER) {
+            // Player is trying to set a hopper as the recipe, create a blank key item
+            return new CustomItemStack(Material.BARRIER, "&cNo Recipe", "&cSneak and Right Click the",
+                    "&cAuto Crafting Table with an item", "&cto change the target recipe"
+            );
+        } else {
+            // Create the key item using the provided material
+            return new CustomItemStack(material, "", "&eSneak and Right Click the",
+                    "&eAuto Crafting Table with an item", "&eto change the target recipe"
+            );
+        }
     }
 }
 
